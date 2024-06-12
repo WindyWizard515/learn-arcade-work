@@ -28,14 +28,14 @@ arcade.draw_circle_filled(100, 360, 30, arcade.csscolor.DARK_GREEN)
 arcade.draw_rectangle_filled(200, 320, 20, 60, arcade.csscolor.SIENNA)
 arcade.draw_ellipse_filled(200, 370, 60, 80, arcade.csscolor.DARK_GREEN)
 
-# Another tree, with a trunck and arc for the top
-# Arc is cetnered at (300, 340) with a width of 50 and height of 100.
+# Another tree, with a trunk and arc for the top
+# Arc is centered at (300, 340) with a width of 50 and height of 100.
 # The starting angle is 0, and ending angle is 180
 arcade.draw_rectangle_filled(300, 320, 20, 60, arcade.csscolor.SIENNA)
 arcade.draw_arc_filled(300, 340, 60, 100, arcade.csscolor.DARK_GREEN, 0, 180)
 
 # Another tree, with a trunk and triangle for the top
-# Triangle is made fo these points:
+# Triangle is made of these points:
 # (400, 400), (370, 320), (430, 320)
 arcade.draw_rectangle_filled(400, 320, 20, 60, arcade.csscolor.SIENNA)
 arcade.draw_triangle_filled(400, 400, 370, 320, 430, 320, arcade.csscolor.DARK_GREEN)
