@@ -65,7 +65,7 @@ arcade.draw_line(500, 550, 550, 500, arcade.color.YELLOW, 3)
 arcade.draw_line(500, 550, 450, 600, arcade.color.YELLOW, 3)
 arcade.draw_line(500, 550, 450, 500, arcade.color.YELLOW, 3)
 
-arcade.draw_text("Arbor Day - Plant a Tree!",
+arcade.draw_text("Arbor Day - Plant a Tree!", 
                  150, 230,
                  arcade.color.BLACK, 24)
 

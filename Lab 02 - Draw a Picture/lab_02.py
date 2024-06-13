@@ -29,10 +29,13 @@ def cafe_doorknob():
     """ Draw the doorknob of the Cafe door """
     arcade.draw_ellipse_filled(360, 130, 25, 15, arcade.csscolor.SANDY_BROWN, 90)
 
-def window():
+def window(x, y):
     """ Draw a Window """
-    # Make the insid of the window sky blue
-    arcade.draw_lrtb_rectangle_filled(50, 150, 300, 200, arcade.csscolor.SKY_BLUE)
+    # Make a point at x, y for reference
+
+
+    # Make the insidw of the window sky blue
+    arcade.draw_lrtb_rectangle_filled(x - 50, 150, 300, 200, arcade.csscolor.SKY_BLUE)
 
     # Draw the outline of the window
     arcade.draw_lrtb_rectangle_outline(50, 150, 300, 200, arcade.csscolor.BLACK, 5)
@@ -40,6 +43,7 @@ def window():
     # Draw the lines inside of the window
     arcade.draw_line(50, 250, 150, 250, arcade.csscolor.BLACK, 5 )
     arcade.draw_line(100, 200, 100, 300, arcade.csscolor.BLACK, 5)
+    arcade.draw_point(x, y, arcade.color.RED, 5)
 
 def chimmney():
     """ Draw the Chimmney"""
@@ -85,8 +89,8 @@ def main():
     arcade.draw_line(502.5, 200, 500, 305, arcade.csscolor.BLACK, 5)
     arcade.draw_line(450, 252.5, 550, 252.5, arcade.csscolor.BLACK, 5 )
 
-    window()
-
+    window(100, 400)
+    window(100, 200)
     chimmney()
 
     smoke()
