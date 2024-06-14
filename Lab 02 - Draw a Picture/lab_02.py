@@ -34,15 +34,15 @@ def window(x, y):
     # Make a point at x, y for reference
 
 
-    # Make the insidw of the window sky blue
-    arcade.draw_lrtb_rectangle_filled(x - 50, 150, 300, 200, arcade.csscolor.SKY_BLUE)
+    # Make the inside of the window sky blue
+    arcade.draw_lrtb_rectangle_filled(x, x + 100, y + 100, y, arcade.csscolor.SKY_BLUE)
 
     # Draw the outline of the window
-    arcade.draw_lrtb_rectangle_outline(50, 150, 300, 200, arcade.csscolor.BLACK, 5)
+    arcade.draw_lrtb_rectangle_outline(x, x + 100, y + 100, y, arcade.csscolor.BLACK, 5)
 
     # Draw the lines inside of the window
-    arcade.draw_line(50, 250, 150, 250, arcade.csscolor.BLACK, 5 )
-    arcade.draw_line(100, 200, 100, 300, arcade.csscolor.BLACK, 5)
+    arcade.draw_line(x, y + 50, x + 100, y + 50, arcade.csscolor.BLACK, 5 )
+    arcade.draw_line(x + 50, y, x + 50, y + 100, arcade.csscolor.BLACK, 5)
     arcade.draw_point(x, y, arcade.color.RED, 5)
 
 def chimmney():
@@ -76,21 +76,9 @@ def main():
 
     cafe_doorknob()
 
-    # Making the inside of the window1 arcade.csscolor.SKY_BLUE
-    arcade.draw_lrtb_rectangle_filled(450, 555, 300, 200, arcade.csscolor.SKY_BLUE)
 
-    # Draw the window1 outline
-    arcade.draw_lrtb_rectangle_filled(450, 550, 205, 200, arcade.csscolor.BLACK)
-    arcade.draw_lrtb_rectangle_filled(450, 550, 305, 300, arcade.csscolor.BLACK)
-    arcade.draw_lrtb_rectangle_filled(450, 455, 305, 200, arcade.csscolor.BLACK)
-    arcade.draw_lrtb_rectangle_filled(550, 555, 305, 200, arcade.csscolor.BLACK)
-
-    # Making the inside of the window1
-    arcade.draw_line(502.5, 200, 500, 305, arcade.csscolor.BLACK, 5)
-    arcade.draw_line(450, 252.5, 550, 252.5, arcade.csscolor.BLACK, 5 )
-
-    window(100, 400)
-    window(100, 200)
+    window(50, 150)
+    window(450, 150)
     chimmney()
 
     smoke()
