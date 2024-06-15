@@ -1,29 +1,43 @@
-from .camel import *
+from camel import *
+
 
 def main():
 
+    # Create the Variables for the loop and stats
+    done = False
+    miles_traveled = 0
+    thirst = 0
+    camel_fatigue = 0
+    native_distance = 0 - 20
+    canteen_sips = 3
+
     welcome()
 
-    options()
 
-    choice = input('\nWhat is your choice?: ')
     
-    while not done:
+    while not False:
+
+        options()
+        choice = input('\nWhat is your choice?: ')
 
         if choice.lower() =='q':
             quit()
             break
         elif choice.lower() == 'a':
-            thirst()
+            canteen_sips = thirst_option(canteen_sips)
+            thirst = 0           
         elif choice.lower() == 'b':
-            moderate_speed()
             player_miles = moderate_speed()
             native_miles = native_speed()
             native_distance += native_miles
             miles_traveled += player_miles
             print(f'\nYou traveled {player_miles} miles!')
             if miles_traveled - native_distance <= 15:
-                break
+                if native_distance >= miles_traveled:
+                    print('The natives had caught up to you! You have lost.')
+                    break
+                else:
+                    print('The natives are getting close!')
             camel_fatigue += 1
             thirst += 1
             if thirst > 4:
@@ -38,12 +52,6 @@ def main():
                     break
                 else:
                     print('\nYour camel is getting tired')
-            if miles_traveled - native_distance <= 15:
-                if native_distance >= miles_traveled:
-                    print('The natives had caught up to you! You have lost.')
-                    break
-                else:
-                    print('The natives are getting close!')
             if miles_traveled >= 200:
                 print('''\n\n\n\n\n\n\n\n\n __     __          __          ___       _ 
  \ \   / /          \ \        / (_)     | |
@@ -93,6 +101,7 @@ def main():
    \   / _ \| | | |   \ \/  \/ / | | '_ \| |
     | | (_) | |_| |    \  /\  /  | | | | |_|
     |_|\___/ \__,_|     \/  \/   |_|_| |_(_)\n\n\n\n\n''')
+                break
         elif choice.lower() == 'd':
             camel_fatigue = 0
             native_miles = randrange(7, 15)

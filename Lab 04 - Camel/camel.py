@@ -27,13 +27,14 @@ def options():
 def quit():
     print('\nYou have quit Camel.')
 
-def thirst():
+def thirst_option(canteen_sips):
     if canteen_sips == 0:
         print('\nYou don\'t have enough sips in your canteen for that!')
     else:
         canteen_sips -= 1
         print(f'\nYou took a sip of your canteen, you now have {canteen_sips} sips left')
-        thirst = 0
+
+    return canteen_sips
 
 def native_speed():
     native_miles = randrange(7, 15)
@@ -42,3 +43,4 @@ def native_speed():
 def moderate_speed():
     player_miles = randrange(5, 13)
     return player_miles
+

@@ -1,6 +1,6 @@
 # Import arcade and all of the functions
 # Folder for functions is in learn-arcade-work
-from .Cat_Cafe import *
+from Cat_Cafe import *
 
 def main():
     
