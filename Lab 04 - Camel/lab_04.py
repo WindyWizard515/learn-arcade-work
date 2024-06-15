@@ -1,4 +1,5 @@
-import random
+from functions import camel
+
 
 done = False
 miles_traveled = 0
@@ -21,6 +22,30 @@ def options():
     print('E. Status check.')
     print('Q. Quit.')
 
+def quit():
+    print('\nYou have quit Camel.')
+
+def thirst():
+    if canteen_sips == 0:
+        print('\nYou don\'t have enough sips in your canteen for that!')
+    else:
+        canteen_sips -= 1
+        print(f'\nYou took a sip of your canteen, you now have {canteen_sips} sips left')
+        thirst = 0
+
+def native_speed():
+    native_miles = random.randrange(7, 15)
+    return native_miles
+
+def moderate_speed():
+    player_miles = random.randrange(5, 13)
+    return player_miles
+
+
+
+
+
+
 def main():
 
     welcome()
@@ -32,20 +57,16 @@ def main():
     while not done:
 
         if choice.lower() =='q':
-            print('\nYou have quit Camel.')
+            quit()
             break
         elif choice.lower() == 'a':
-            if canteen_sips == 0:
-                print('\nYou don\'t have enough sips in your canteen for that!')
-            else:
-                canteen_sips -= 1
-                print(f'\nYou took a sip of your canteen, you now have {canteen_sips} sips left')
-                thirst = 0
+            thirst()
         elif choice.lower() == 'b':
-            player_miles = random.randrange(5, 13)
+            moderate_speed()
+            player_miles = moderate_speed()
+            native_miles = native_speed()
+            native_distance += native_miles
             miles_traveled += player_miles
-            native_miles = random.randrange(7, 15)
-            native_miles += native_miles
             print(f'\nYou traveled {player_miles} miles!')
             if miles_traveled - native_distance <= 15:
                 break

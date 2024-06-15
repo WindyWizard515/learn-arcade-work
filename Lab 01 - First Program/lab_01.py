@@ -1,4 +1,4 @@
-print("Hello, my name is Paul Hudsona nd I am lerning how to code in \"Python Arcade\".")
+print("Hello, my name is Paul Hudson nd I am lerning how to code in \"Python Arcade\".")
 print("The way I downloaded these files is I went into GitHub and forked the repository.")
 print("After I forked the repository its path was /WindyWizard515/learn-arcade-work,")
 print("Once I forked the repository I cloned it onto my files in my home directory \"/home/paul\".")
