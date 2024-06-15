@@ -1,50 +1,4 @@
-from functions import camel
-
-
-done = False
-miles_traveled = 0
-thirst = 0
-camel_fatigue = 0
-native_distance = 0 - 20
-canteen_sips = 3
-def welcome():
-    print('\n\nWelcome to Camel!\n')
-    print('You have stolen a camel to make your way across the great Mobi desert.')
-    print('The natives want their camel back and are chasing you down! Survive your')
-    print('desert trek and outrun the natives.\n')
-
-def options():
-    print('\n          OPTIONS:        \n')
-    print('A. Drink from your canteen.')
-    print('B. Ahead moderate speed.')
-    print('C. Ahead full speed.')
-    print('D. Stop for the night.')
-    print('E. Status check.')
-    print('Q. Quit.')
-
-def quit():
-    print('\nYou have quit Camel.')
-
-def thirst():
-    if canteen_sips == 0:
-        print('\nYou don\'t have enough sips in your canteen for that!')
-    else:
-        canteen_sips -= 1
-        print(f'\nYou took a sip of your canteen, you now have {canteen_sips} sips left')
-        thirst = 0
-
-def native_speed():
-    native_miles = random.randrange(7, 15)
-    return native_miles
-
-def moderate_speed():
-    player_miles = random.randrange(5, 13)
-    return player_miles
-
-
-
-
-
+from .camel import *
 
 def main():
 
@@ -98,19 +52,19 @@ def main():
     | | (_) | |_| |    \  /\  /  | | | | |_|
     |_|\___/ \__,_|     \/  \/   |_|_| |_(_)\n\n\n\n\n''')
                 break
-            oasis = random.randrange(1, 21)
+            oasis = randrange(1, 21)
             if oasis == 1:
                 canteen_sips = 3
                 camel_fatigue = 0
                 thirst = 0
                 print('You have found an oasis!')            
         elif choice.lower() == 'c':
-            player_miles = random.randrange(10, 21)
+            player_miles = randrange(10, 21)
             miles_traveled += player_miles
-            native_miles = random.randrange(7, 15)
+            native_miles = randrange(7, 15)
             native_distance += native_miles
             print(f'\nYou traveled {player_miles} miles!')
-            random_camel = random.randrange(1, 4)
+            random_camel = randrange(1, 4)
             camel_fatigue += random_camel
             thirst += 1
             if thirst > 4:
@@ -126,7 +80,7 @@ def main():
                     break
                 else:
                     print('\nYour camel is getting tired')
-            oasis = random.randrange(1, 21)
+            oasis = randrange(1, 21)
             if oasis == 1:
                 canteen_sips = 3
                 camel_fatigue = 0
@@ -141,7 +95,7 @@ def main():
     |_|\___/ \__,_|     \/  \/   |_|_| |_(_)\n\n\n\n\n''')
         elif choice.lower() == 'd':
             camel_fatigue = 0
-            native_miles = random.randrange(7, 15)
+            native_miles = randrange(7, 15)
             native_distance += native_miles
             print('\nYour camel is very happy!')
             if miles_traveled - native_distance <= 15:
