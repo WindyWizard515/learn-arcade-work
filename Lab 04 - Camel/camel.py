@@ -24,9 +24,6 @@ def options():
     print('E. Status check.')
     print('Q. Quit.')
 
-def quit():
-    print('\nYou have quit Camel.')
-
 def thirst_option(canteen_sips):
     if canteen_sips == 0:
         print('\nYou don\'t have enough sips in your canteen for that!')
@@ -44,3 +41,18 @@ def moderate_speed():
     player_miles = randrange(5, 13)
     return player_miles
 
+def win_screen():
+        print('''\n\n\n\n\n\n\n\n\n __     __          __          ___       _ 
+ \ \   / /          \ \        / (_)     | |
+  \ \_/ /__  _   _   \ \  /\  / / _ _ __ | |
+   \   / _ \| | | |   \ \/  \/ / | | '_ \| |
+    | | (_) | |_| |    \  /\  /  | | | | |_|
+    |_|\___/ \__,_|     \/  \/   |_|_| |_(_)\n\n\n\n\n''')
+        
+def oasis():
+    oasis = randrange(1, 21)
+    if oasis == 1:
+        canteen_sips = 3
+        camel_fatigue = 0
+        thirst = 0
+        print('You have found an oasis!') 

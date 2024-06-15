@@ -15,13 +15,13 @@ def main():
 
 
     
-    while not False:
+    while True:
 
         options()
         choice = input('\nWhat is your choice?: ')
 
         if choice.lower() =='q':
-            quit()
+            print('\nYou have quit Camel.')
             break
         elif choice.lower() == 'a':
             canteen_sips = thirst_option(canteen_sips)
@@ -53,19 +53,9 @@ def main():
                 else:
                     print('\nYour camel is getting tired')
             if miles_traveled >= 200:
-                print('''\n\n\n\n\n\n\n\n\n __     __          __          ___       _ 
- \ \   / /          \ \        / (_)     | |
-  \ \_/ /__  _   _   \ \  /\  / / _ _ __ | |
-   \   / _ \| | | |   \ \/  \/ / | | '_ \| |
-    | | (_) | |_| |    \  /\  /  | | | | |_|
-    |_|\___/ \__,_|     \/  \/   |_|_| |_(_)\n\n\n\n\n''')
+                win_screen()
                 break
-            oasis = randrange(1, 21)
-            if oasis == 1:
-                canteen_sips = 3
-                camel_fatigue = 0
-                thirst = 0
-                print('You have found an oasis!')            
+            oasis()           
         elif choice.lower() == 'c':
             player_miles = randrange(10, 21)
             miles_traveled += player_miles
@@ -88,20 +78,10 @@ def main():
                     break
                 else:
                     print('\nYour camel is getting tired')
-            oasis = randrange(1, 21)
-            if oasis == 1:
-                canteen_sips = 3
-                camel_fatigue = 0
-                thirst = 0
-                print('You have found an oasis!')
             if miles_traveled >= 200:
-                print('''\n\n\n\n\n\n\n\n\n __     __          __          ___       _ 
- \ \   / /          \ \        / (_)     | |
-  \ \_/ /__  _   _   \ \  /\  / / _ _ __ | |
-   \   / _ \| | | |   \ \/  \/ / | | '_ \| |
-    | | (_) | |_| |    \  /\  /  | | | | |_|
-    |_|\___/ \__,_|     \/  \/   |_|_| |_(_)\n\n\n\n\n''')
+                win_screen()
                 break
+            oasis()
         elif choice.lower() == 'd':
             camel_fatigue = 0
             native_miles = randrange(7, 15)
