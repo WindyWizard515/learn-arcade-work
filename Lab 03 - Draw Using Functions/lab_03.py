@@ -31,7 +31,7 @@ def main():
     # Draw the doorknob of the cafe door
     cafe_doorknob()
 
-    # Draw the two Windows at the points, (x, y)
+    # Draw the two Windows at the points, (x, y):
     # Window 1: (50, 150)
     # Window 2: (450, 150)
     window(50, 150)
