@@ -31,21 +31,19 @@ arcade.draw_lrtb_rectangle_filled(0, 10, 500, 0, arcade.csscolor.SANDY_BROWN)
 arcade.draw_lrtb_rectangle_filled(590, 600, 500, 0, arcade.csscolor.SANDY_BROWN)
 
 # Draw the Cafe door
-arcade.draw_lrtb_rectangle_filled(200, 210, 300, 0, arcade.csscolor.SANDY_BROWN)
-arcade.draw_lrtb_rectangle_filled(200, 400, 300, 290, arcade.csscolor.SANDY_BROWN)
-arcade.draw_lrtb_rectangle_filled(400, 410, 300, 0, arcade.csscolor.SANDY_BROWN)
+arcade.draw_lrtb_rectangle_outline(200, 400, 300, 0, arcade.csscolor.SANDY_BROWN, 10)
 
 # Draw the doorknob
 arcade.draw_ellipse_filled(360, 130, 25, 15, arcade.csscolor.SANDY_BROWN, 90)
 
 # Making the inside of the window1 arcade.csscolor.SKY_BLUE
-arcade.draw_lrtb_rectangle_filled(450, 555, 300, 200, arcade.csscolor.SKY_BLUE)
+arcade.draw_lrtb_rectangle_filled(450, 550, 300, 200, arcade.csscolor.SKY_BLUE)
 
 # Draw the window1 outline
-arcade.draw_lrtb_rectangle_filled(450, 550, 205, 200, arcade.csscolor.BLACK)
+arcade.draw_lrtb_rectangle_outline(450, 550, 300, 200, arcade.csscolor.BLACK, 5)
 
 # Making the inside of the window1
-arcade.draw_line(502.5, 200, 500, 305, arcade.csscolor.BLACK, 5)
+arcade.draw_line(500, 200, 500, 300, arcade.csscolor.BLACK, 5)
 arcade.draw_line(450, 252.5, 550, 252.5, arcade.csscolor.BLACK, 5 )
 
 # Making the inside of window2, arcade.csscolor.SKY_BLUE

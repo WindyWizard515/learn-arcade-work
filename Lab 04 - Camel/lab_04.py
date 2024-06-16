@@ -55,7 +55,12 @@ def main():
             if miles_traveled >= 200:
                 win_screen()
                 break
-            oasis()           
+            oasis_random = randrange(1,2)
+            if oasis_random == 1:
+                oasis_result = oasis(canteen_sips, camel_fatigue, thirst)
+                canteen_sips = oasis_result[0]
+                camel_fatigue = oasis_result[1]
+                thirst = oasis_result[2]          
         elif choice.lower() == 'c':
             player_miles = full_speed()
             miles_traveled += player_miles
@@ -81,22 +86,27 @@ def main():
             if miles_traveled >= 200:
                 win_screen()
                 break
-            oasis()
-        elif choice.lower() == 'd':
-            camel_fatigue = 0
-            native_miles = native_speed()
-            native_distance += native_miles
-            print('\nYour camel is very happy!')
-            if miles_traveled - native_distance <= 15:
-                if native_distance >= miles_traveled:
-                    print('The natives had caught up to you! You have lost.')
-                    break
-                else:
-                    print('The natives are getting close!')
+            oasis_random = randrange(1,2)
+            if oasis_random == 1:
+                oasis_result = oasis(canteen_sips, camel_fatigue, thirst)
+                canteen_sips = oasis_result[0]
+                camel_fatigue = oasis_result[1]
+                thirst = oasis_result[2]
+            elif choice.lower() == 'd':
+                camel_fatigue = 0
+                native_miles = native_speed()
+                native_distance += native_miles
+                print('\nYour camel is very happy!')
+                if miles_traveled - native_distance <= 15:
+                    if native_distance >= miles_traveled:
+                        print('The natives had caught up to you! You have lost.')
+                        break
+                    else:
+                        print('The natives are getting close!')
         elif choice.lower() == 'e':
-            status_check()
+            status_check(miles_traveled, native_distance, canteen_sips, camel_fatigue, thirst)
         else:
-            print('You can\'t type that in!')
+            print('\nYou can\'t type that in!')
             print('The only options to type are:')
         
 
