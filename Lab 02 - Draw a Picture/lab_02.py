@@ -43,9 +43,6 @@ arcade.draw_lrtb_rectangle_filled(450, 555, 300, 200, arcade.csscolor.SKY_BLUE)
 
 # Draw the window1 outline
 arcade.draw_lrtb_rectangle_filled(450, 550, 205, 200, arcade.csscolor.BLACK)
-arcade.draw_lrtb_rectangle_filled(450, 550, 305, 300, arcade.csscolor.BLACK)
-arcade.draw_lrtb_rectangle_filled(450, 455, 305, 200, arcade.csscolor.BLACK)
-arcade.draw_lrtb_rectangle_filled(550, 555, 305, 200, arcade.csscolor.BLACK)
 
 # Making the inside of the window1
 arcade.draw_line(502.5, 200, 500, 305, arcade.csscolor.BLACK, 5)
