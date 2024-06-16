@@ -21,7 +21,7 @@ def main():
         choice = input('\nWhat is your choice?: ')
 
         if choice.lower() =='q':
-            print('\nYou have quit Camel.')
+            print('\nYou have quit Camel.\n')
             break
         elif choice.lower() == 'a':
             canteen_sips = thirst_option(canteen_sips)
@@ -57,9 +57,9 @@ def main():
                 break
             oasis()           
         elif choice.lower() == 'c':
-            player_miles = randrange(10, 21)
+            player_miles = full_speed()
             miles_traveled += player_miles
-            native_miles = randrange(7, 15)
+            native_miles = native_speed()
             native_distance += native_miles
             print(f'\nYou traveled {player_miles} miles!')
             random_camel = randrange(1, 4)
@@ -84,7 +84,7 @@ def main():
             oasis()
         elif choice.lower() == 'd':
             camel_fatigue = 0
-            native_miles = randrange(7, 15)
+            native_miles = native_speed()
             native_distance += native_miles
             print('\nYour camel is very happy!')
             if miles_traveled - native_distance <= 15:
@@ -94,12 +94,10 @@ def main():
                 else:
                     print('The natives are getting close!')
         elif choice.lower() == 'e':
-            native_distance_away = miles_traveled - native_distance
-            print(f'\nYour current stats are:\n')
-            print(f'Thirst: {thirst}')
-            print(f'Miles Traveled: {miles_traveled}.')
-            print(f'Camel Fatigue: {camel_fatigue}.')
-            print(f'The natives are: {native_distance_away} miles away.')
+            status_check()
+        else:
+            print('You can\'t type that in!')
+            print('The only options to type are:')
         
 
 

@@ -56,3 +56,16 @@ def oasis():
         camel_fatigue = 0
         thirst = 0
         print('You have found an oasis!') 
+
+def full_speed():
+    player_miles = randrange(10, 21)
+    return player_miles
+
+def status_check():
+    native_distance_away = miles_traveled - native_distance
+    print(f'\nYour current stats are:\n')
+    print(f'Canteen Sips: {canteen_sips}')
+    print(f'Thirst: {thirst}')
+    print(f'Miles Traveled: {miles_traveled}.')
+    print(f'Camel Fatigue: {camel_fatigue}.')
+    print(f'The natives are: {native_distance_away} miles away.')
