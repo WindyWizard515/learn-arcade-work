@@ -1,5 +1,5 @@
 # Import the random module for randrange
-from random import randrange
+from random import *
 
 # Create the Variables for the loop and stats
 done = False
