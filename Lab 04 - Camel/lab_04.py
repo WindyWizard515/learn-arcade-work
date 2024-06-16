@@ -1,6 +1,5 @@
 from camel import *
 
-
 def main():
 
     # Create the Variables for the loop and stats
@@ -12,8 +11,6 @@ def main():
     canteen_sips = 3
 
     welcome()
-
-
     
     while True:
 
