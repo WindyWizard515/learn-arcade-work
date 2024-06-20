@@ -52,7 +52,7 @@ def main():
             if miles_traveled >= 200:
                 win_screen()
                 break
-            oasis_random = randrange(1,2)
+            oasis_random = randrange(1, 21)
             if oasis_random == 1:
                 oasis_result = oasis(canteen_sips, camel_fatigue, thirst)
                 canteen_sips = oasis_result[0]
@@ -83,7 +83,7 @@ def main():
             if miles_traveled >= 200:
                 win_screen()
                 break
-            oasis_random = randrange(1,2)
+            oasis_random = randrange(1,21)
             if oasis_random == 1:
                 oasis_result = oasis(canteen_sips, camel_fatigue, thirst)
                 canteen_sips = oasis_result[0]
