@@ -1,3 +1,5 @@
+import os
+
 """ Create All of the Classes """
 
 # Create a Class called Room()
@@ -90,3 +92,21 @@ theif_dagger = Weapon("Theif's Dagger", 10)
 
 # Fists
 barehanded = Weapon("Barehanded", 5)
+
+""" The instructions of how to play the game and move around """
+
+def instructions_print():
+    """ Print the directions and how to control the player """
+    print("\n\nWelcome to the text adventure game \"The Dark Tower.\"")
+    print("To play, use directional commands to navigate:")
+    print("- Type 'n' or 'north' to go north,")
+    print("- Type 'e' or 'east' to go east,")
+    print("- Type 's' or 'south' to go south,")
+    print("- Type 'w' or 'west' to go west.\n")
+    print("To interact with objects or characters in your surroundings, press 'i'.")
+    print("Access your inventory by pressing 'b' or typing 'backpack' or 'inventory'.")
+    print("Use 'u' to utilize any items you have collected.")
+    print("If you encounter an enemy, press 'a' or type 'attack' to engage in combat.")
+    print("To see the details of the room again, press 'l' or type 'look'.")
+    print("Follow the prompts and descriptions provided in the game to explore, solve puzzles,\
+and advance through the story.\n")

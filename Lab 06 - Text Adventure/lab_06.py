@@ -60,36 +60,23 @@ def main():
     player_status = Player(100, 5, chosen_weapon)
 
     """ Print the directions and how to control the player """
-    print("\n\nWelcome to the text adventure game \"The Dark Tower.\"")
-    print("To play, use directional commands to navigate:")
-    print("- Type 'n' or 'north' to go north,")
-    print("- Type 'e' or 'east' to go east,")
-    print("- Type 's' or 'south' to go south,")
-    print("- Type 'w' or 'west' to go west.\n")
-    print("To interact with objects or characters in your surroundings, press 'i'.")
-    print("Access your inventory by pressing 'b' or typing 'backpack' or 'inventory'.")
-    print("Use 'u' to utilize any items you have collected.")
-    print("If you encounter an enemy, press 'a' or type 'attack' to engage in combat.")
-    print("To see the details of the room again, press 'l' or type 'look'.")
-    print("Follow the prompts and descriptions provided in the game to explore, solve puzzles,\
-and advance through the story.\n")
+    
     while True:
-        player_input = input("WARNING You cannot see the instructions once you start the game, are you sure you want\
- to start, if you want to start the game press enter:  ")
+        instructions_print()
+        player_input = input("WARNING You cannot see the instructions once you start the game, once you are ready\
+ to start the game, press enter: ")
         if player_input == '':
             break
-        elif player_input.lower == "check":
-            
-        
 
     """ Print the beginning text of the game before the options """
 
-    print("         You find yourself on the floor of a damp and dark room")
-    print("All you remember is that you walked through a portal that you found in your backyard")
-    print("       You can feel an ominous and eerie feeling emanating from the north.")
-    print("     Will you be able to find you way out and beat the dark forces at hand?")
-    print()
-    print("                There is only one way to find out...")
+    print("\n\nWelcome, brave adventurer, to \"The Dark Tower,\" a captivating text adventure.")
+    print("You find yourself inside the ominous Dark Tower, a place of malevolence and power.")
+    print("Legends speak of a formidable evil lurking within these walls, and only the daring have ventured inside.")
+    print("As you navigate the tower's dark corridors and hidden chambers,")
+    print("your courage, wit, and resourcefulness will determine your fate.")
+    print("Will you conquer the tower, or will it ensare you in its dark embrace?\n")
+
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -102,7 +89,7 @@ and advance through the story.\n")
         print(room_list[current_room].description)
 
         # Ask the user what they would like to do
-        user_input = input("                   What do you choose to do?  ")
+        user_input = input("                   What do you choose to do? ")
 
         # Testing for all of the commands that the user could input:
 
