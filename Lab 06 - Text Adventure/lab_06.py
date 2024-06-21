@@ -1,5 +1,8 @@
 from Text_Adventure import *
 
+"""                 List of Command that do not currently work:
+        'i' 'interact' 'b' 'backpack' 'inventory' 'u' 'utilize' 'a' 'attack' """
+""" Weapon speed and weapon Block do not currently work"""
 def main():
 
     # Create an empty list where we will append all of the rooms that we create
@@ -29,44 +32,25 @@ def main():
                     0=Armory 1=Kitchen 2=Library 3=Child's Bedroom 4=Bedroom 5=Boss Room"""
     current_room = 0
 
-    # Create an instance of the Weapon class whose paramaters are name, and damage
-    weapon_list = []
-
-    # Append all of the weapons to weapon_list
-    # Append the War ax
-    weapon_list.append(war_ax)
-
-    # Append the Spear
-    weapon_list.append(spear)
-
-    # Append the Katana
-    weapon_list.append(katana)
-
-    # Append the Shortsword
-    weapon_list.append(shortsword)
-
-    # Append the Thief's Dagger
-    weapon_list.append(theif_dagger)
-
-    # Append the Fists
-    weapon_list.append(barehanded)
-
     """ Will Change based on the user input in the armory, the weapn indexes are:
-                    0=War Axe 1=Spear 2=Katana 3=Shortsword 4=Theif's Dagger 5=Fists"""
-    chosen_weapon = weapon_list[5]
+                    1=War Axe 2=Spear 3=Katana 4=Shortsword 5=Theif's Dagger 6=Fists"""
+    
+    weapon_choice = 4
+    chosen_weapon = weapon_list[weapon_choice]
 
     # Create an instance of the Player class for health, armor, weapon, and the amount of damage they do
     
     player_status = Player(100, 5, chosen_weapon)
 
     """ Print the directions and how to control the player """
-    
-    while True:
-        instructions_print()
-        player_input = input("WARNING You cannot see the instructions once you start the game, once you are ready\
+    instructions_print()
+    player_input = input("Once you have read the instructions and are ready\
  to start the game, press enter: ")
+    while True:
         if player_input == '':
             break
+        else:
+            pass
 
     """ Print the beginning text of the game before the options """
 
@@ -125,7 +109,16 @@ def main():
             else:
                 current_room = next_room
 
-        # Interactables
+        # Interact
+        elif user_input.lower() == "i" or user_input.lower() == "interact":
+            if room_list[current_room].interactables == None:
+                print("\n           There is nothing to interact with!")
+            else:
+                room_list[current_room].interact()
+
+        # Display current weapon
+        elif user_input.lower() == "weapon":
+            print(f"You current weapon is {chosen_weapon.name}")
 
         # Quit
         elif user_input.lower() == "q" or user_input.lower() == "quit":
