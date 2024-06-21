@@ -34,6 +34,7 @@ class Weapon():
         def __init__(self, name, damage):
             self.name = name
             self.damage = damage
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # Create an Enemy Class
@@ -88,10 +89,19 @@ weapon_list.append(theif_dagger)
 # Append the Fists
 weapon_list.append(barehanded)
 
+""" Will Change based on the user input in the armory, the weapn indexes are:
+                1=War Axe 2=Spear 3=Katana 4=Shortsword 5=Theif's Dagger 6=Fists The default weapons are Fists"""
+
+weapon_choice = 6
+chosen_weapon = weapon_list[weapon_choice]
+
 """ Make the definitions for all the interactables in the rooms """
 
 def wall_of_weapons():
-    print("Choose a Weapon to aid you on your journey\n")
+    global weapon_choice
+    global chosen_weapon
+    global weapon_list
+    print("\nChoose a Weapon to aid you on your journey\n")
     print("1: War Axe, Damage = 25 speed = 1")
     print("2: Spear, Damage = 15, speed = 1.5")
     print("3: Katana, Damage = 15, speed = 1, block = 5")
@@ -99,14 +109,8 @@ def wall_of_weapons():
     print("5: Theif's Dagger, damage 10, speed 2.5")
     print("6: Fists, damage 5, speed 1")
     weapon_choice = input("\nEnter the number of what weapon you would like: ")
-    try:
-        int(weapon_choice)
-        chosen_weapon = weapon_list[weapon_choice]
-        print(f"The weapon you chose was {chosen_weapon}!")
-    except ValueError:
-        print("You can't do that!")
-    except TypeError:
-        pass
+    chosen_weapon = weapon_list[int(weapon_choice)]
+    print(f"The weapon you chose was {chosen_weapon.name}!")
 
 """ Create all of the Instances of the Classes that we made above """
 
