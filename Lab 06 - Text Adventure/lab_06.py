@@ -1,3 +1,5 @@
+import os
+
 """ Create All of the Classes """
 
 # Create a Class called Room()
@@ -36,6 +38,7 @@ class Weapon():
             self.damage = damage
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+os.system("clear")
 
 # Create an Enemy Class
 class Enemy():
@@ -112,6 +115,7 @@ def wall_of_weapons():
     chosen_weapon = weapon_list[int(weapon_choice)]
     print(f"The weapon you chose was {chosen_weapon.name}!")
 
+
 """ Create all of the Instances of the Classes that we made above """
 
 """                          Rooms                              """
@@ -136,8 +140,8 @@ child_bedroom = Room("\n\n       You are in the Child's Bedroom, you see nothing
 
 
 # Create the Bedroom Room
-bedroom = Room("\n\n       You are in the Bedroom, along a dusty bookshelf, you can see a book the stands out more than the rest.. There is less dust on it!\
-                \n                                                 You may interact with The Book or move West\n\n", None, None, None, 3, "Book", None)
+bedroom = Room("\n\nYou are in the Bedroom, along a dusty bookshelf, you can see a book the stands out more than the rest.. There is less dust on it!\
+                \n                                          You may interact with The Book or move West\n\n", None, None, None, 3, "Book", None)
 
 
 boss_room = Room("\n\n      You are now in the Boss Room! The passageway Closed behind you and you can see a weak and frail man sitting in the center of the arena,\
@@ -206,17 +210,18 @@ def main():
 
     """ Print the directions and how to control the player """
     instructions_print()
-    player_input = input("Once you have read the instructions and are ready\
+    player_input = input("If you ever want to see the instructions again, type in \'instructions\' Once you have read the instructions and are ready\
  to start the game, press enter: ")
     while True:
         if player_input == '':
+            os.system("clear")
             break
         else:
             pass
 
     """ Print the beginning text of the game before the options """
-
-    print("\n\nWelcome, brave adventurer, to \"The Dark Tower,\" a captivating text adventure.")
+    os.system("clear")
+    print("Welcome, brave adventurer, to \"The Dark Tower,\" a captivating text adventure.")
     print("You find yourself inside the ominous Dark Tower, a place of malevolence and power.")
     print("Legends speak of a formidable evil lurking within these walls, and only the daring have ventured inside.")
     print("As you navigate the tower's dark corridors and hidden chambers,")
@@ -245,6 +250,7 @@ def main():
                 print("\n                         You can't go that way!")
             else:
                 current_room = next_room
+                os.system("clear")
 
         # East
         elif user_input.lower() == "e" or user_input.lower() == "east":
@@ -253,6 +259,7 @@ def main():
                 print("\n                         You can't go that way!")
             else:
                 current_room = next_room
+                os.system("clear")
 
         # South
         elif user_input.lower() == "s" or user_input.lower() == "south":
@@ -261,6 +268,7 @@ def main():
                 print("\n                         You can't go that way!")
             else:
                 current_room = next_room
+                os.system("clear")
 
         # West
         elif user_input.lower() == "w" or user_input.lower() == "west":
@@ -269,25 +277,30 @@ def main():
                 print("\n                         You can't go that way!")
             else:
                 current_room = next_room
+                os.system("clear")
 
         # Interact
         elif user_input.lower() == "i" or user_input.lower() == "interact":
             if room_list[current_room].interactables == None:
                 print("\n           There is nothing to interact with!")
             else:
+                os.system("clear")
                 room_list[current_room].interact()
 
         # Display current weapon
         elif user_input.lower() == "weapon":
+            os.system("clear")
             print(f"\n                   Your current weapon is {chosen_weapon.name}")
 
         # Quit
         elif user_input.lower() == "q" or user_input.lower() == "quit":
             print("\n                    You have now quit the game :(\n")
+            os.system("clear")
             break
 
         # User input is not undersood
         else:
+            os.system("clear")
             print(f"\nThe user input: '{user_input}' was not understood.\n              Please Try again.")
 
 
