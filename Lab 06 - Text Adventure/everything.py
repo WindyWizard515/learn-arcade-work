@@ -1,3 +1,4 @@
+from time import sleep
 import os
 """                                     Create All of the Classes                              """
 
@@ -142,6 +143,20 @@ def ration_of_food():
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""" The function for the bedroom room """
+def dusty_book():
+    book_answer = input("Do you want to pick up the book? ")
+    if book_answer.lower() == 'y' or book_answer.lower() == "yes":
+        print("You add the book to your inventory.")
+        sleep(3)
+        print("You see a door open on the right of the bookshelf!")
+        add_inventory("book")
+    elif book_answer.lower == 'n' or book_answer.lower() == "no":
+        print('Ok')
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """ The instructions of how to play the game and move around """
 
 def instructions_print():
@@ -181,7 +196,7 @@ child_bedroom = Room("\n\n       You are in the Child's Bedroom, you see nothing
 
 # Create the Bedroom Room
 bedroom = Room("\n\nYou are in the Bedroom, along a dusty bookshelf, you can see a book the stands out more than the rest.. There is less dust on it!\
-                \n                                          You may interact with The Book or move West\n\n", None, None, None, 3, "Book", None)
+                \n                                          You may interact with The Book or move West\n\n", None, None, None, 3, "Book", dusty_book)
 
 
 boss_room = Room("\n\n      You are now in the Boss Room! The passageway Closed behind you and you can see a weak and frail man sitting in the center of the arena,\
