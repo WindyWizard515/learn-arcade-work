@@ -146,13 +146,19 @@ def ration_of_food():
 
 """ The function for the bedroom room """
 def dusty_book():
+    global current_room
     book_answer = input("Do you want to pick up the book? ")
-    if book_answer.lower() == 'y' or book_answer.lower() == "yes":
+    if book_answer.lower() == "y" or book_answer.lower() == "yes":
         print("You add the book to your inventory.")
         sleep(3)
         print("You see a door open on the right of the bookshelf!")
-        add_inventory("book")
-    elif book_answer.lower == 'n' or book_answer.lower() == "no":
+        boss_answer = input("Do you want to go into the boss room? ")
+        if boss_answer.lower() == "y" or boss_answer.lower() == "yes":
+            current_room = 6
+        else:
+            print("Ok")
+        
+    elif book_answer.lower == "n" or book_answer.lower() == "no":
         print('Ok')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -214,6 +220,7 @@ room_list.append(armory)
 
 # Kitchen
 room_list.append(kitchen)
+
 # Library
 room_list.append(library)
 
@@ -252,7 +259,7 @@ def main():
     player_input = input("If you ever want to see the instructions again, type in \'instructions\' Once you have read the instructions and are ready\
  to start the game, press enter: ")
     while True:
-        if player_input == '':
+        if player_input == "":
             os.system("clear")
             break
         else:
