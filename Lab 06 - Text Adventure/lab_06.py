@@ -165,7 +165,7 @@ def main():
             instructions_print()
 
         # Display Backpack
-        elif user_input.lower() == "b" or user_input.lower == "backpack":
+        elif user_input.lower() == "b" or user_input.lower == "backpack": 
             os.system("clear")
             for item in inventory:
                 print(item)
