@@ -50,8 +50,7 @@ weapon_list.append(barehanded)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """ Will Change based on the user input in the armory, the weapon indexes are:
-                1=War Axe 2=Spear 3=Katana 4=Shortsword 5=Theif's Dagger 6=Fists The default weapons are Fists"""
-
+                1=War Axe 2=Spear 3=Katana 4=Shortsword 5=Theif's Dagger 6=Fists The default weapons are Fists""" 
 weapon_choice = 6
 chosen_weapon = weapon_list[weapon_choice]
 

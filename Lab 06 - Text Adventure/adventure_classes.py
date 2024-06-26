@@ -20,7 +20,6 @@ class Room:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 class Player():
-
     def __init__(self, health, armor, weapon):
         self.health = health
         self.armor = armor
