@@ -11,6 +11,7 @@ def draw_sun():
     arcade.draw_circle_filled(600, 600, 40, arcade.color.YELLOW)
 
 def draw_sun_rays():
+    """ Rays of the Sun """
     arcade.draw_line(600, 600, 555, 555, arcade.color.YELLOW, 4)
     arcade.draw_line(600, 600, 577, 550, arcade.color.YELLOW, 4)
     arcade.draw_line(600, 600, 550, 577, arcade.color.YELLOW, 4)
