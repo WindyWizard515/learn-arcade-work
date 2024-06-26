@@ -4,13 +4,13 @@ import random
 import arcade
 
 # --- Constants ---
-SPRITE_SCALING_PLAYER = .25
+SPRITE_SCALING_PLAYER = .125
 SPRITE_SCALING_COIN = 0.2
 COIN_COUNT = 50
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-MOVEMENT_SPEED = 7
+SCREEN_WIDTH = 1920
+SCREEN_HEIGHT = 1015
+MOVEMENT_SPEED = 5
 
 
 class MyGame(arcade.Window):
@@ -38,7 +38,7 @@ class MyGame(arcade.Window):
         self.left_pressed = False
         self.right_pressed = False
 
-        arcade.set_background_color(arcade.color.AMAZON)
+        arcade.set_background_color(arcade.color.MAGENTA_HAZE)
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -114,18 +114,26 @@ class MyGame(arcade.Window):
         # Update player postion based on the keys pressed
         if self.up_pressed and not self.down_pressed:
             self.player_sprite.texture = arcade.load_texture(self.ninja_up)
+            if self.player_sprite.center_y > SCREEN_HEIGHT - 18:
+                self.player_sprite.center_y = SCREEN_HEIGHT - 18
             self.player_sprite.change_y = MOVEMENT_SPEED
         elif self.down_pressed and not self.up_pressed:
             self.player_sprite.texture = arcade.load_texture(self.ninja_down)
+            if self.player_sprite.center_y < 18:
+                self.player_sprite.center_y = 18
             self.player_sprite.change_y = -MOVEMENT_SPEED
         else:
             self.player_sprite.change_y = 0
 
         if self.left_pressed and not self.right_pressed:
             self.player_sprite.texture = arcade.load_texture(self.ninja_left)
+            if self.player_sprite.center_x < 18:
+                self.player_sprite.center_x = 18
             self.player_sprite.change_x = -MOVEMENT_SPEED
         elif self.right_pressed and not self.left_pressed:
             self.player_sprite.texture = arcade.load_texture(self.ninja_right)
+            if self.player_sprite.center_x > SCREEN_WIDTH - 18:
+                self.player_sprite.center_x = SCREEN_WIDTH - 18
             self.player_sprite.change_x = MOVEMENT_SPEED
         else:
             self.player_sprite.change_x = 0
@@ -154,5 +162,4 @@ def main():
     arcade.run()
 
 
-if __name__ == "__main__":
-    main()
+main()
