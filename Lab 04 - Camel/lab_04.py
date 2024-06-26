@@ -1,7 +1,6 @@
 from camel import *
 
 def main():
-
     # Create the Variables for the loop and stats
     done = False
     miles_traveled = 0
