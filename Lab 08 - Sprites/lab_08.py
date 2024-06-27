@@ -196,7 +196,7 @@ class MyGame(arcade.Window):
             coin = Coin("/home/paul/learn-arcade-work/Lab 08 - Sprites/bacon_coin.png",  SPRITE_SCALING_COIN)
             self.good_coin_list.append(coin)
             self.score += 1
-            if self.score % 10 == 0 and self.score != 0:
+            if self.score % 100 == 0 and self.score != 0:
                 level_up = arcade.load_sound("/home/paul/learn-arcade-work/Lab 08 - Sprites/level_up.wav")
                 arcade.play_sound(level_up)
                 self.player_lives += 1
