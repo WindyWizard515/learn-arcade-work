@@ -74,6 +74,9 @@ class MyGame(arcade.Window):
         # Score
         self.score = 0
 
+        # Player_lives
+        self.player_lives = 3
+
         self.ninja_right = "/home/paul/learn-arcade-work/Lab 08 - Sprites/ninja_right.png"
         self.ninja_left = "/home/paul/learn-arcade-work/Lab 08 - Sprites/ninja_left.png"
         self.ninja_up = "/home/paul/learn-arcade-work/Lab 08 - Sprites/ninja_up.png"
@@ -91,7 +94,7 @@ class MyGame(arcade.Window):
 
             # Create the coin instance
             # Coin image from kenney.nl
-            coin = Coin("/home/paul/learn-arcade-work/Lab 08 - Sprites/bacon_coin.gif",  SPRITE_SCALING_COIN)
+            coin = Coin("/home/paul/learn-arcade-work/Lab 08 - Sprites/bacon_coin.png",  SPRITE_SCALING_COIN)
             bad_coin = Coin("/home/paul/learn-arcade-work/Lab 08 - Sprites/snout_coin.png", SPRITE_SCALING_COIN)
 
             # center the coin
@@ -115,9 +118,8 @@ class MyGame(arcade.Window):
         self.good_coin_list.draw()
         self.bad_coin_list.draw()
         self.player_list.draw()
-
         # Put the text on the screen.
-        output = f"Score: {self.score}"
+        output = f"Score: {self.score}, Lives: {self.player_lives}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
 
     def on_key_press(self, key, modifiers):
@@ -176,14 +178,9 @@ class MyGame(arcade.Window):
         self.player_sprite.center_y += self.player_sprite.change_y
 
         # Call update on all sprites (The sprites don't do much in this
-        # example though.)
-        if self.score < 0:
-            self.good_coin_list.clear()
-            self.bad_coin_list.clear()
-            exit()
-        else:
-            self.good_coin_list.update()
-            self.bad_coin_list.update()
+        # example though.
+        self.good_coin_list.update()
+        self.bad_coin_list.update()
 
         # Generate a list of all sprites that collided with the player.
         coins_hit_list = arcade.check_for_collision_with_list(self.player_sprite,
@@ -191,27 +188,43 @@ class MyGame(arcade.Window):
         bad_hit_list = arcade.check_for_collision_with_list(self.player_sprite,
                                                             self.bad_coin_list)
         
-        good_coin_sound = arcade.load_sound("/home/paul/learn-arcade-work/Lab 08 - Sprites/good_coin.wav")
-        bad_coin_sound = arcade.load_sound("/home/paul/learn-arcade-work/Lab 08 - Sprites/bad_coin.wav")
 
         # Loop through each colliding sprite, remove it, and add to the score.
         for coin in coins_hit_list:
             coin.remove_from_sprite_lists()
 
-            arcade.play_sound(good_coin_sound)
-            self.score += 1
-
-            coin = Coin("/home/paul/learn-arcade-work/Lab 08 - Sprites/bacon_coin.gif",  SPRITE_SCALING_COIN)
+            coin = Coin("/home/paul/learn-arcade-work/Lab 08 - Sprites/bacon_coin.png",  SPRITE_SCALING_COIN)
             self.good_coin_list.append(coin)
+            self.score += 1
+            if self.score % 10 == 0 and self.score != 0:
+                level_up = arcade.load_sound("/home/paul/learn-arcade-work/Lab 08 - Sprites/level_up.wav")
+                arcade.play_sound(level_up)
+                self.player_lives += 1
+
+            else:
+                good_coin_sound = arcade.load_sound("/home/paul/learn-arcade-work/Lab 08 - Sprites/good_coin.wav")
+
+                arcade.play_sound(good_coin_sound)
+
+
+
 
         for coin in bad_hit_list:
+            bad_coin_sound = arcade.load_sound("/home/paul/learn-arcade-work/Lab 08 - Sprites/bad_coin.wav")
             coin.remove_from_sprite_lists()
 
             arcade.play_sound(bad_coin_sound)
-            self.score -= 1
+            self.player_lives -= 1
 
             bad_coin = Coin("/home/paul/learn-arcade-work/Lab 08 - Sprites/snout_coin.png",  SPRITE_SCALING_COIN)
             self.bad_coin_list.append(bad_coin)
+            if self.player_lives <= 0:
+                arcade.close_window()
+                arcade.open_window(1920, 1015, "Game Over")
+                arcade.start_render()
+                arcade.draw_text(f"Game over! Your score was {self.score}", 850, 507.5, arcade.color.WHITE, 12, 500, "left")
+                arcade.run()
+                
 
 
                 
