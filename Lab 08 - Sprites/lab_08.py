@@ -12,6 +12,27 @@ SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1015
 MOVEMENT_SPEED = 5
 
+class Coin(arcade.Sprite):
+    """
+    This class represents the coins on our screen. It is a child class of
+    the arcade library's "Sprite" class.
+    """
+
+    def reset_pos(self):
+
+        # Reset the coin to a random spot above the screen
+        self.center_y = random.randrange(SCREEN_HEIGHT + 20,
+                                         SCREEN_HEIGHT + 100)
+        self.center_x = random.randrange(SCREEN_WIDTH)
+
+    def update(self):
+        # Move the coin
+        self.center_y -= 1
+
+        # See if the coin has fallen off the bottom of the screen.
+        # If so, reset it.
+        if self.top < 0:
+            self.reset_pos()
 
 class MyGame(arcade.Window):
     """ Our custom Window Class"""
@@ -19,11 +40,14 @@ class MyGame(arcade.Window):
     def __init__(self):
         """ Initializer """
         # Call the parent class initializer
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Sprite Example")
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Coin Collection")
+
+        self.background_image = arcade.load_texture(":resources:images/backgrounds/abstract_1.jpg")
 
         # Variables that will hold sprite lists
         self.player_list = None
-        self.coin_list = None
+        self.good_sprite_list = None
+        self.bad_sprite_list = None
 
         # Set up the player info
         self.player_sprite = None
@@ -38,14 +62,14 @@ class MyGame(arcade.Window):
         self.left_pressed = False
         self.right_pressed = False
 
-        arcade.set_background_color(arcade.color.MAGENTA_HAZE)
 
     def setup(self):
         """ Set up the game and initialize the variables. """
 
         # Sprite lists
         self.player_list = arcade.SpriteList()
-        self.coin_list = arcade.SpriteList()
+        self.good_coin_list = arcade.SpriteList()
+        self.bad_coin_list = arcade.SpriteList()
 
         # Score
         self.score = 0
@@ -67,19 +91,29 @@ class MyGame(arcade.Window):
 
             # Create the coin instance
             # Coin image from kenney.nl
-            coin = arcade.Sprite("/home/paul/learn-arcade-work/Lab 08 - Sprites/bacon_coin.gif", SPRITE_SCALING_COIN)
+            coin = Coin("/home/paul/learn-arcade-work/Lab 08 - Sprites/bacon_coin.gif",  SPRITE_SCALING_COIN)
+            bad_coin = Coin("/home/paul/learn-arcade-work/Lab 08 - Sprites/snout_coin.png", SPRITE_SCALING_COIN)
 
             # center the coin
             coin.center_x = random.randrange(SCREEN_WIDTH)
             coin.center_y = random.randrange(SCREEN_HEIGHT)
 
+            # center bad coin
+            bad_coin.center_x = random.randrange(SCREEN_WIDTH)
+            bad_coin.center_y = random.randrange(SCREEN_HEIGHT)
+
             # Add the coin to the lists
-            self.coin_list.append(coin)
+            self.good_coin_list.append(coin)
+            self.bad_coin_list.append(bad_coin)
 
     def on_draw(self):
         """ Draw everything """
         arcade.start_render()
-        self.coin_list.draw()
+
+        arcade.draw_lrwh_rectangle_textured(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, self.background_image)
+
+        self.good_coin_list.draw()
+        self.bad_coin_list.draw()
         self.player_list.draw()
 
         # Put the text on the screen.
@@ -110,7 +144,7 @@ class MyGame(arcade.Window):
 
     def update(self, delta_time):
         """ Movement and game logic """
-
+        
         # Update player postion based on the keys pressed
         if self.up_pressed and not self.down_pressed:
             self.player_sprite.texture = arcade.load_texture(self.ninja_up)
@@ -143,18 +177,44 @@ class MyGame(arcade.Window):
 
         # Call update on all sprites (The sprites don't do much in this
         # example though.)
-        self.coin_list.update()
+        if self.score < 0:
+            self.good_coin_list.clear()
+            self.bad_coin_list.clear()
+            exit()
+        else:
+            self.good_coin_list.update()
+            self.bad_coin_list.update()
 
         # Generate a list of all sprites that collided with the player.
         coins_hit_list = arcade.check_for_collision_with_list(self.player_sprite,
-                                                              self.coin_list)
+                                                              self.good_coin_list)
+        bad_hit_list = arcade.check_for_collision_with_list(self.player_sprite,
+                                                            self.bad_coin_list)
+        
+        good_coin_sound = arcade.load_sound("/home/paul/learn-arcade-work/Lab 08 - Sprites/good_coin.wav")
+        bad_coin_sound = arcade.load_sound("/home/paul/learn-arcade-work/Lab 08 - Sprites/bad_coin.wav")
 
         # Loop through each colliding sprite, remove it, and add to the score.
         for coin in coins_hit_list:
             coin.remove_from_sprite_lists()
+
+            arcade.play_sound(good_coin_sound)
             self.score += 1
 
+            coin = Coin("/home/paul/learn-arcade-work/Lab 08 - Sprites/bacon_coin.gif",  SPRITE_SCALING_COIN)
+            self.good_coin_list.append(coin)
 
+        for coin in bad_hit_list:
+            coin.remove_from_sprite_lists()
+
+            arcade.play_sound(bad_coin_sound)
+            self.score -= 1
+
+            bad_coin = Coin("/home/paul/learn-arcade-work/Lab 08 - Sprites/snout_coin.png",  SPRITE_SCALING_COIN)
+            self.bad_coin_list.append(bad_coin)
+
+
+                
 def main():
     """ Main method """
     window = MyGame()
