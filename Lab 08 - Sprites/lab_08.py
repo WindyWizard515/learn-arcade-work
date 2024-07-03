@@ -153,7 +153,6 @@ class MyGame(arcade.Window):
     def on_draw(self):
         """ Draw everything """
         arcade.start_render()
-        arcade.draw_lrwh_rectangle_textured(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, self.background_image)
         self.good_coin_list.draw()
         self.bad_coin_list.draw()
         self.player_list.draw()
