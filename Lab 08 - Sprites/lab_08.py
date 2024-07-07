@@ -158,7 +158,7 @@ class MyGame(arcade.Window):
         self.player_list.draw()
 
         # Put the text on the screen.
-        output = f"Score: {self.score}, System Health: {self.player_lives}"
+        output = f"Score: {self.score}, Lives: {self.player_lives}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
 
     def on_key_press(self, key, modifiers):
