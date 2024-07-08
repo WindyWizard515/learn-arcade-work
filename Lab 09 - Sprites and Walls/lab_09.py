@@ -17,7 +17,7 @@ last_speed_increase_score = 1
 class Laser(arcade.Sprite):
     def update(self):
         # Move the laser
-        self.center_y += 15 
+        self.center_y += 15
 
         if self.center_y >= SCREEN_HEIGHT + 15:
             self.kill()
@@ -29,7 +29,7 @@ class Coin(arcade.Sprite):
         self.acceleration = 0.1
 
     def reset_pos(self):
-        # Reset the above the screen
+        # Reset above the screen
         self.center_y = random.randrange(SCREEN_HEIGHT, SCREEN_HEIGHT + 100)
         self.center_x = random.randrange(SCREEN_WIDTH)
 
@@ -43,16 +43,22 @@ class Coin(arcade.Sprite):
         # Spin the coin counterclockwise when it moves down
         self.angle += 5
 
+class Pack(arcade.Sprite):
+    
+    def update(self):
+        self.center_y -= 1
+
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
 
         # Sprite lists
         self.coin_list = None
+        self.pack_list = None
         self.player_list = None
         self.laser_list = None
 
-        # Set up the player
+        # Set up the playerw
         self.player_sprite = None
 
         # Track the current key state
@@ -73,6 +79,8 @@ class MyGame(arcade.Window):
         # Countdown timer for game start delay
         self.countdown_time = 2
 
+        self.player_speed = 1
+
     def setup(self):
         # Sprite lists
         self.coin_list = arcade.SpriteList()
@@ -87,14 +95,6 @@ class MyGame(arcade.Window):
             self.coin.center_x = random.randrange(SCREEN_WIDTH)
             self.coin.center_y = random.randrange(SCREEN_HEIGHT + 30, SCREEN_HEIGHT + 50000)
             self.coin_list.append(self.coin)
-        
-        # Pack
-        for coin in range(1000):
-            self.pack_png = ":resources:images/items/gemRed.png"
-            self.pack = Coin(self.pack_png, 1)
-            self.pack.center_x = random.randrange(SCREEN_WIDTH)
-            self.pack.center_y = random.randrange(SCREEN_HEIGHT + 30, SCREEN_HEIGHT + 50000)
-            self.pack_list.append(self.pack)
             
         # Player
         self.player = "/home/paul/learn-arcade-work/Lab 09 - Sprites and Walls/spaceship.gif"
@@ -112,6 +112,7 @@ class MyGame(arcade.Window):
         self.player_list.draw()
         self.coin_list.draw()
         self.laser_list.draw()
+        self.pack_list.draw()
 
         output = f"Score: {self.score}, System Health: {self.player_lives}, Laser Shots: {self.laser_amount}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
@@ -172,17 +173,30 @@ class MyGame(arcade.Window):
     def update(self, delta_time):
         global max_speed
         global last_speed_increase_score
-        # Only update if countdown has finished
         if time.time() - self.start_time < self.countdown_time:
             return
         
-        # Check if 5 seconds have passed to increment laser amount
+        if self.score % 25 == 0 and self.score != 0 and self.score != last_speed_increase_score:
+            max_speed += 1
+            if self.score % 50 == 0 and self.score != 0 and self.score != last_speed_increase_score:
+                self.player_speed += 1
+                last_speed_increase_score = self.score
+            last_speed_increase_score = self.score
+
+
+        
         if time.time() - self.start_time - self.countdown_time >= 5:
-            self.laser_amount += 1
-            # Reset the start time for laser increment
+            self.pack_png = ":resources:images/items/gemRed.png"
+            self.pack = Pack(self.pack_png, .5)
+            self.pack.center_x = random.randrange(SCREEN_WIDTH)
+            self.pack.center_y = SCREEN_HEIGHT - 10
+            self.pack_list.append(self.pack)
             self.start_time = time.time() - self.countdown_time
 
-        # Handle player movement and other game logic
+        self.coin_list.update()
+        self.pack_list.update()
+        self.laser_list.update()
+
         if self.up_pressed and not self.down_pressed:
             if self.player_sprite.center_y > SCREEN_HEIGHT - 25:
                 self.player_sprite.center_y = SCREEN_HEIGHT - 25
@@ -207,7 +221,7 @@ class MyGame(arcade.Window):
             self.player_sprite.change_x = 0
 
         self.player_sprite.center_x += self.player_sprite.change_x
-        self.player_sprite.center_y += self.player_sprite.change_y - 1
+        self.player_sprite.center_y += self.player_sprite.change_y - int(self.player_speed)
 
         self.coin_list.update()
         self.pack_list.update()
@@ -244,17 +258,13 @@ class MyGame(arcade.Window):
         pack_hit = arcade.check_for_collision_with_list(self.player_sprite, self.pack_list)
 
         for pack in pack_hit:
-            print("HI")
+            pack.remove_from_sprite_lists()
+            self.laser_amount += 1
 
-        for coin in self.coin_list:
-            if coin.center_y == -15:
-                self.coin = Coin(self.coin_png, 0.07)
-                self.coin.center_x = random.randrange(SCREEN_WIDTH)
-                self.coin.center_y = random.randrange(SCREEN_HEIGHT + 30, SCREEN_HEIGHT + 5000)
-                self.coin_list.append(self.coin)
-            elif self.score % 5 == 0 and self.score != 0 and self.score != last_speed_increase_score:
-                max_speed += 1
-                last_speed_increase_score = self.score
+        
+        if self.player_sprite.center_y < -15:
+            print(f"\n\n\n                              Your score was {self.score}\n\n\n")
+            exit()
 
 
 def main():

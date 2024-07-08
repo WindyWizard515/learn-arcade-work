@@ -24,7 +24,7 @@ def instructions():
     print("         You start with 3 lives and if you hit the bad coins they take away lives, every 100 coins you get another life.")
     print("                If you ever want to exit the game just press the escape button and the window will close")
     print("                                  For the first 5 seconds you will be invincible")
-    test_for_enter = input("\n                              Once you are ready to start, press any key")
+    test_for_enter = input("\n                             Once you are ready to start, press any key")
     os.system("clear")
 
 
