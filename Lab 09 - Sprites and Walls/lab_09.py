@@ -168,6 +168,7 @@ class MyGame(arcade.Window):
             self.laser_sprite.center_x = self.player_sprite.center_x
             self.laser_sprite.center_y = self.player_sprite.center_y + 40
             self.laser_list.append(self.laser_sprite)
+            
             self.laser_amount -= 1
 
     def update(self, delta_time):
