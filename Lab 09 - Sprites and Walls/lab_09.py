@@ -46,7 +46,7 @@ class Coin(arcade.Sprite):
 class Pack(arcade.Sprite):
     
     def update(self):
-        self.center_y -= 1
+        self.center_y -= max_speed - .5
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
@@ -168,7 +168,7 @@ class MyGame(arcade.Window):
             self.laser_sprite.center_x = self.player_sprite.center_x
             self.laser_sprite.center_y = self.player_sprite.center_y + 40
             self.laser_list.append(self.laser_sprite)
-            
+
             self.laser_amount -= 1
 
     def update(self, delta_time):
@@ -224,10 +224,6 @@ class MyGame(arcade.Window):
         self.player_sprite.center_x += self.player_sprite.change_x
         self.player_sprite.center_y += self.player_sprite.change_y - int(self.player_speed)
 
-        self.coin_list.update()
-        self.pack_list.update()
-        self.laser_list.update()
-
         coins_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.coin_list)
 
         for laser in self.laser_list:
@@ -266,6 +262,16 @@ class MyGame(arcade.Window):
         if self.player_sprite.center_y < -15:
             print(f"\n\n\n                              Your score was {self.score}\n\n\n")
             exit()
+
+        for coin in self.coin_list:
+            if coin.center_y <= -20:
+                coin.remove_from_sprite_lists()
+                self.coin_png = "/home/paul/learn-arcade-work/Lab 09 - Sprites and Walls/astroid.png"
+                self.coin = Coin(self.coin_png, 0.07)
+                self.coin.center_x = random.randrange(SCREEN_WIDTH)
+                self.coin.center_y = random.randrange(SCREEN_HEIGHT + 30, SCREEN_HEIGHT + 5000)
+                self.coin_list.append(self.coin)
+
 
 
 def main():
