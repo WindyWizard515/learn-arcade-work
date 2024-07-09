@@ -1,103 +1,21 @@
-file = """Adolphus of Helborne
-Aldric Foxe
-Amanita Maleficant
-Aphra the Vicious
-Arachne the Gruesome
-Astarte Hellebore
-Brutus the Gruesome
-Cain of Avernus
-Claude Avernus
-Claude del Winter
-Claudia the Siren
-Cornelius Frostheim
-Cornelius Rackham
-Damian Loveless
-Draco Frostheim
-Draco of Viridian
-Draco the Unpleasant
-Edgar the Grim
-Editha the Festering
-Edric von Corvidus
-Elvira the Blasphemous
-Emelda la Garvel
-Eustace the Unclean
-Gaspard the Blasphemous
-Gitana Regan
-Goneril the Spider
-Griselda von Tempest
-Hagar Bloodcrow
-Helga of Loveless
-Hildegarde the Shrew
-Hugo Cromwell
-Hugo Frostheim
-Hugo the Repellent
-Huldah Harloch
-Humbert the Grotesque
-Isadora Cygne
-Jezebelle the Hellcat
-Jezebelle the Vile
-Kali la Mauvaise
-Kyril Helborne
-Kyril the Obscene
-Lavinia Nyx
-Lavinia the Vile
-Lilith the Hellcat
-Maudetta la Helborne
-Maudetta von Drear
-Medusa von Harloch
-Morgiana Darkstar
-Morgiana Malheur
-Morgiana the Shrew
-Narcissa de Bloodcrow
-Narcissa Falkwing
-Narcissa the Fury
-Natasha the Manic
-Natasha the Shrivelled
-Octavia the Siren
-Octavian Falkwing
-Octavian the Lecherous
-Odile Helborne
-Portia the Bilious
-Ravenna von Malheur
-Renard the Torturer
-Rodolphus the Vicious
-Rodrigo Loveless
-Rudolf the Savage
-Rufina Loveless
-Rufus Hades
-Rufus Sangria
-Rufus von Wynter
-Rupert Corvidus
-Rupert Helborne
-Rupert the Enchanter
-Scarletina of Grimoire
-Severin de Helborne
-Severin the Black
-Severin the Unpleasant
-Severina Helborne
-The Barbarous Harlot
-The Branded Shadow
-The Deadly Raven
-The Dire Hellspawn
-The Forsaken Succubus
-The Ill-Mannered Fury
-The Infamous Devourer
-The Obscene Libertine
-The Putrid Cannibal
-The Putrid Ogress
-The Soulless Toad
-The Vindictive Fury
-Theodora the Wicked
-Titania the Banshee
-Ulysses de Darkmoon
-Ulysses de Nyx
-Ulysses Falkwing
-Varvara Tempest
-Victor Livingston
-Vidar the Manic
-Vidar the Ogre
-Vladimir Noire
-Yasmin del Corvida"""
+import os
 
+# Clear the terminal before you print anything
+os.system("clear")
+
+# Create the variable that counts how many times it took and what line the villain is on
+villian_number = 1
+
+# Open the super_villains.txt file so we can look through it using a for loop
+file = open("/home/paul/learn-arcade-work/Testing/super_villains.txt")
+
+# Use a for loop to loop through the super_villains.txt file
 for line in file:
-    print(line)
+    if line.strip() == "Hagar Bloodcrow":
+        print("\n                            I found Him!")
+        print(f"                          He is on line {villian_number}\n")
+        pass
+    else:
+        villian_number += 1
+        
+file.close()
