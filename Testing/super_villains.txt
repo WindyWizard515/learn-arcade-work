@@ -1,4 +1,4 @@
-file = """Adolphus of Helborne
+Adolphus of Helborne
 Aldric Foxe
 Amanita Maleficant
 Aphra the Vicious
@@ -97,7 +97,4 @@ Victor Livingston
 Vidar the Manic
 Vidar the Ogre
 Vladimir Noire
-Yasmin del Corvida"""
-
-for line in file:
-    print(line)
+Yasmin del Corvida
