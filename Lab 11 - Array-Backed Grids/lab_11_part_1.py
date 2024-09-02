@@ -1,14 +1,6 @@
-# Import the os library to clear the terminal for a clean slate
+import arcade
 import os
 os.system("clear")
-
-"""
-Array Backed Grid
-
-Show how to use a two-dimensional list/array to back the display of a
-grid on-screen.
-"""
-import arcade
 
 # Set how many rows and columns we will have
 ROW_COUNT = 10
@@ -94,16 +86,48 @@ class MyGame(arcade.Window):
             else:
                 self.grid[row][column] = 0
                 
-        for 
+        if row+1 < ROW_COUNT and column < COLUMN_COUNT:
+
+            # Flip the location between 1 and 0.
+            if self.grid[row+1][column] == 0:
+                self.grid[row+1][column] = 1
+            else:
+                self.grid[row+1][column] = 0
                 
-        print(f"Total of {} cells are selected")
+        if row-1 < ROW_COUNT and column < COLUMN_COUNT:
+
+            # Flip the location between 1 and 0.
+            if self.grid[row-1][column] == 0:
+                self.grid[row-1][column] = 1
+            else:
+                self.grid[row-1][column] = 0
+                
+        if row < ROW_COUNT and column+1 < COLUMN_COUNT:
+
+            # Flip the location between 1 and 0.
+            if self.grid[row][column+1] == 0:
+                self.grid[row][column+1] = 1
+            else:
+                self.grid[row][column+1] = 0
+                
+        if row < ROW_COUNT and column-1 < COLUMN_COUNT:
+
+            # Flip the location between 1 and 0.
+            if self.grid[row][column-1] == 0:
+                self.grid[row][column-1] = 1
+            else:
+                self.grid[row][column-1] = 0
 
 
 def main():
 
-    window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+    MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
     arcade.run()
 
 
 if __name__ == "__main__":
     main()
+    clear_question = input ("Do you want to clear the command prompt? Y or N :")
+    if clear_question.upper() == "Y":
+        os.system("clear")
+        
