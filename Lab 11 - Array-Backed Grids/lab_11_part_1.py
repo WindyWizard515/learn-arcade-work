@@ -78,6 +78,7 @@ class MyGame(arcade.Window):
 
         # Make sure we are on-grid. It is possible to click in the upper right
         # corner in the margin and go to a grid location that doesn't exist
+        # Middle Point
         if row < ROW_COUNT and column < COLUMN_COUNT:
 
             # Flip the location between 1 and 0.
@@ -86,6 +87,7 @@ class MyGame(arcade.Window):
             else:
                 self.grid[row][column] = 0
                 
+        # Top Point                
         if row+1 < ROW_COUNT and column < COLUMN_COUNT:
 
             # Flip the location between 1 and 0.
@@ -94,7 +96,8 @@ class MyGame(arcade.Window):
             else:
                 self.grid[row+1][column] = 0
                 
-        if row-1 < ROW_COUNT and column < COLUMN_COUNT:
+        # Bottom Point Problem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if row-1 < ROW_COUNT and column < COLUMN_COUNT and row != 0:
 
             # Flip the location between 1 and 0.
             if self.grid[row-1][column] == 0:
@@ -102,6 +105,7 @@ class MyGame(arcade.Window):
             else:
                 self.grid[row-1][column] = 0
                 
+        # Right Point
         if row < ROW_COUNT and column+1 < COLUMN_COUNT:
 
             # Flip the location between 1 and 0.
@@ -110,7 +114,8 @@ class MyGame(arcade.Window):
             else:
                 self.grid[row][column+1] = 0
                 
-        if row < ROW_COUNT and column-1 < COLUMN_COUNT:
+        # Left Point Problem!!!!!!!!!!!!!!!!!!!!!!!!!
+        if row < ROW_COUNT and column-1 < COLUMN_COUNT and column != 0:
 
             # Flip the location between 1 and 0.
             if self.grid[row][column-1] == 0:
