@@ -1,12 +1,8 @@
-"""
-Array Backed Grid
-
-Show how to use a two-dimensional list/array to back the display of a
-grid on-screen.
-"""
 import arcade
+import os
+os.system("clear")
 
-# Set how many rows and columns we will have
+# Set how many columns and columns we will have
 ROW_COUNT = 10
 COLUMN_COUNT = 10
 
@@ -23,6 +19,7 @@ SCREEN_WIDTH = (WIDTH + MARGIN) * COLUMN_COUNT + MARGIN
 SCREEN_HEIGHT = (HEIGHT + MARGIN) * ROW_COUNT + MARGIN
 
 
+
 class MyGame(arcade.Window):
     """
     Main application class.
@@ -33,6 +30,33 @@ class MyGame(arcade.Window):
         Set up the application.
         """
         super().__init__(width, height)
+        self.cells_selected = 0
+        
+        self.row_1_cells = 0
+        self.row_2_cells = 0
+        self.row_3_cells = 0
+        self.row_4_cells = 0
+        self.row_5_cells = 0
+        self.row_6_cells = 0
+        self.row_7_cells = 0
+        self.row_8_cells = 0
+        self.row_9_cells = 0
+        self.row_10_cells = 0
+        
+        self.column_1_cells = 0
+        self.column_2_cells = 0
+        self.column_3_cells = 0
+        self.column_4_cells = 0
+        self.column_5_cells = 0
+        self.column_6_cells = 0
+        self.column_7_cells = 0
+        self.column_8_cells = 0
+        self.column_9_cells = 0
+        self.column_10_cells = 0
+        
+        self.continuous_count = 0
+        self.max_continuous_found = 0
+ 
         # Create a 2 dimensional array. A two dimensional
         # array is simply a list of lists.
         self.grid = []
@@ -42,6 +66,7 @@ class MyGame(arcade.Window):
             self.grid.append([])
             for column in range(COLUMN_COUNT):
                 self.grid[row].append(0)  # Append a cell
+        
 
         arcade.set_background_color(arcade.color.BLACK)
 
@@ -78,8 +103,6 @@ class MyGame(arcade.Window):
         column = x // (WIDTH + MARGIN)
         row = y // (HEIGHT + MARGIN)
 
-        print(f"Click coordinates: ({x}, {y}). Grid coordinates: ({row}, {column})")
-
         # Make sure we are on-grid. It is possible to click in the upper right
         # corner in the margin and go to a grid location that doesn't exist
         if row < ROW_COUNT and column < COLUMN_COUNT:
@@ -87,8 +110,182 @@ class MyGame(arcade.Window):
             # Flip the location between 1 and 0.
             if self.grid[row][column] == 0:
                 self.grid[row][column] = 1
+                self.cells_selected += 1
             else:
                 self.grid[row][column] = 0
+                self.cells_selected -= 1
+                
+            if row == 0:
+                if self.grid[row][column] == 0:
+                    self.row_1_cells -= 1
+                else:
+                    self.row_1_cells += 1
+            if row == 1:
+                if self.grid[row][column] == 0:
+                    self.row_2_cells -= 1
+                else:
+                    self.row_2_cells += 1
+            if row == 2:
+                if self.grid[row][column] == 0:
+                    self.row_3_cells -= 1
+                else:
+                    self.row_3_cells += 1
+            if row == 3:
+                if self.grid[row][column] == 0:
+                    self.row_4_cells -= 1
+                else:
+                    self.row_4_cells += 1
+            if row == 4:
+                if self.grid[row][column] == 0:
+                    self.row_5_cells -= 1
+                else:
+                    self.row_5_cells += 1
+            if row == 5:
+                if self.grid[row][column] == 0:
+                    self.row_6_cells -= 1
+                else:
+                    self.row_6_cells += 1
+            if row == 6:
+                if self.grid[row][column] == 0:
+                    self.row_7_cells -= 1
+                else:
+                    self.row_7_cells += 1
+            if row == 7:
+                if self.grid[row][column] == 0:
+                    self.row_8_cells -= 1
+                else:
+                    self.row_8_cells += 1
+            if row == 8:
+                if self.grid[row][column] == 0:
+                    self.row_9_cells -= 1
+                else:
+                    self.row_9_cells += 1
+            if row == 9:
+                if self.grid[row][column] == 0:
+                    self.row_10_cells -= 1
+                else:
+                    self.row_10_cells += 1
+                    
+            if column == 0:
+                if self.grid[row][column] == 0:
+                    self.column_1_cells -= 1
+                else:
+                    self.column_1_cells += 1
+            if column == 1:
+                if self.grid[row][column] == 0:
+                    self.column_2_cells -= 1
+                else:
+                    self.column_2_cells += 1
+            if column == 2:
+                if self.grid[row][column] == 0:
+                    self.column_3_cells -= 1
+                else:
+                    self.column_3_cells += 1
+            if column == 3:
+                if self.grid[row][column] == 0:
+                    self.column_4_cells -= 1
+                else:
+                    self.column_4_cells += 1
+            if column == 4:
+                if self.grid[row][column] == 0:
+                    self.column_5_cells -= 1
+                else:
+                    self.column_5_cells += 1
+            if column == 5:
+                if self.grid[row][column] == 0:
+                    self.column_6_cells -= 1
+                else:
+                    self.column_6_cells += 1
+            if column == 6:
+                if self.grid[row][column] == 0:
+                    self.column_7_cells -= 1
+                else:
+                    self.column_7_cells += 1
+            if column == 7:
+                if self.grid[row][column] == 0:
+                    self.column_8_cells -= 1
+                else:
+                    self.column_8_cells += 1
+            if column == 8:
+                if self.grid[row][column] == 0:
+                    self.column_9_cells -= 1
+                else:
+                    self.column_9_cells += 1
+            if column == 9:
+                if self.grid[row][column] == 0:
+                    self.column_10_cells -= 1
+                else:
+                    self.column_10_cells += 1
+                
+        def continuous_count_math_row(row_number):
+            self.continuous_count = 0
+            self.max_continuous_found = 0
+            for i in range(ROW_COUNT):
+                if self.grid[row_number][i] == 1:
+                    self.continuous_count += 1
+                else:
+                    if self.continuous_count > self.max_continuous_found:
+                        self.max_continuous_found = self.continuous_count
+                    self.continuous_count = 0
+                
+            if self.max_continuous_found > 1:
+                print(f"There are {self.max_continuous_found} continuous blocks selected on row {row_number + 1}")
+                
+        def continuous_count_math_column(column_number):
+            self.continuous_count = 0
+            self.max_continuous_found = 0
+            for i in range(ROW_COUNT):
+                if self.grid[i][column_number] == 1:
+                    self.continuous_count += 1
+                else:
+                    if self.continuous_count > self.max_continuous_found:
+                        self.max_continuous_found = self.continuous_count
+                    self.continuous_count = 0
+                
+            if self.max_continuous_found > 1:
+                print(f"There are {self.max_continuous_found} continuous blocks selected on column {column_number + 1}")
+                
+        print(f"Total of {self.cells_selected} cells are selected.")
+        continuous_count_math_row(0)
+        print(f"Row 1 has {self.row_1_cells} cells selected.")
+        continuous_count_math_row(1)
+        print(f"Row 2 has {self.row_2_cells} cells selected.")
+        continuous_count_math_row(2)
+        print(f"Row 3 has {self.row_3_cells} cells selected.")
+        continuous_count_math_row(3)
+        print(f"Row 4 has {self.row_4_cells} cells selected.")
+        continuous_count_math_row(4)
+        print(f"Row 5 has {self.row_5_cells} cells selected.")
+        continuous_count_math_row(5)
+        print(f"Row 6 has {self.row_6_cells} cells selected.")
+        continuous_count_math_row(6)
+        print(f"Row 7 has {self.row_7_cells} cells selected.")
+        continuous_count_math_row(7)
+        print(f"Row 8 has {self.row_8_cells} cells selected.")
+        continuous_count_math_row(8)
+        print(f"Row 9 has {self.row_9_cells} cells selected.")
+        continuous_count_math_row(9)
+        print(f"Row 10 has {self.row_10_cells} cells selected.")
+        continuous_count_math_column(0)
+        print(f"Column 1 has {self.column_1_cells} cells selected.")
+        continuous_count_math_column(1)
+        print(f"Column 2 has {self.column_2_cells} cells selected.")
+        continuous_count_math_column(2)
+        print(f"Column 3 has {self.column_3_cells} cells selected.")
+        continuous_count_math_column(3)
+        print(f"Column 4 has {self.column_4_cells} cells selected.")
+        continuous_count_math_column(4)
+        print(f"Column 5 has {self.column_5_cells} cells selected.")
+        continuous_count_math_column(5)
+        print(f"Column 6 has {self.column_6_cells} cells selected.")
+        continuous_count_math_column(6)
+        print(f"Column 7 has {self.column_7_cells} cells selected.")
+        continuous_count_math_column(7)
+        print(f"Column 8 has {self.column_8_cells} cells selected.")
+        continuous_count_math_column(8)
+        print(f"Column 9 has {self.column_9_cells} cells selected.")
+        continuous_count_math_column(9)
+        print(f"Column 10 has {self.column_10_cells} cells selected.")
 
 
 def main():
@@ -99,3 +296,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    os.system("clear")
