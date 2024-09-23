@@ -1,7 +1,6 @@
 # Import The "arcade" library
 
 import arcade
-import arcade.csscolor
 
 # Open the window
 arcade.open_window(600, 600, "Cat Cafe")
