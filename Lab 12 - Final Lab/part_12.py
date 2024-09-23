@@ -138,21 +138,24 @@ class MyGame(arcade.Window):
         self.player_sprite.center_y = 50
         self.all_sprites_list.append(self.player_sprite)
 
+        # Background
+        self.background_image = arcade.load_texture("/home/paul/learn-arcade-work/Lab 12 - Final Lab/background.png", )
+
     def on_draw(self):
         """
         Render the screen.
         """
         arcade.start_render()
 
-        # Background
-        arcade.draw_lrwh_rectangle_textured(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, self.background_image)
 
         # This command has to happen before we start drawing
         self.clear()
 
+        # Background 
+        arcade.draw_lrwh_rectangle_textured(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, self.background_image)
+
         # Draw all the sprites.
         self.all_sprites_list.draw()
-        arcade.draw_lrwh_rectangle_textured(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, self.background_image)
     def on_update(self, delta_time):
         """ Movement and game logic """
 
