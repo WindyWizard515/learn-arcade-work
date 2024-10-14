@@ -12,9 +12,6 @@ TILE_SCALING = 0.5
 # Pixles per frame
 PLAYER_MOVEMENT_SPEED = 5
 
-GRAVITY = 1
-PLAYER_JUMP_SPEED = 20
-
 
 class MyGame(arcade.Window):
     """ The class for the Window """
