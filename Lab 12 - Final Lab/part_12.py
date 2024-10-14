@@ -1,4 +1,6 @@
 import arcade
+import os
+os.system("clear")
 
 # Variables that stay the same
 SCREEN_WIDTH = 1920
@@ -31,11 +33,15 @@ class MyGame(arcade.Window):
         # Set up the Physics Engine
         self.physics_engine = None
 
+        # Camera for scrolling
+        self.camera = None
+
         # Set the background color to a saddle brown
         arcade.set_background_color(arcade.csscolor.SADDLE_BROWN)
 
     def setup(self):
         """ Sets up some Sprites/The Game """
+
 
         # Start up the scene
         self.scene = arcade.Scene()
@@ -46,8 +52,9 @@ class MyGame(arcade.Window):
 
         """ Image From https://opengameart.org/forumtopic/i-need-a-scifispacespacesuit-for-my-2d-scifi-platform-shooter """
         # Set up the Player Sprites
-        image_source = "Lab 12 - Final Lab/player(R).png"
-        self.player_sprite = arcade.Sprite(image_source, CHARACTER_SCALING)
+        self.player_right_face = "Lab 12 - Final Lab/player(R).png"
+        self.player_left_face = "Lab 12 - Final Lab/player(L).png"
+        self.player_sprite = arcade.Sprite(self.player_right_face, CHARACTER_SCALING)
 
         self.player_sprite.center_x = 64
         self.player_sprite.center_y = 135
@@ -72,19 +79,23 @@ class MyGame(arcade.Window):
             self.scene.add_sprite("Walls", wall)
 
         # Create the Physics engine variable
-        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.scene.get_sprite_list("Walls"))
+        self.physics_engine = arcade.PhysicsEnginePlatformer(self.player_sprite, gravity_constant=GRAVITY, walls=self.scene.get_sprite_list("Walls"))
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed."""
 
         if key == arcade.key.UP or key == arcade.key.W:
-            self.player_sprite.change_y = PLAYER_MOVEMENT_SPEED
+            if self.physics_engine.can_jump():
+                self.player_sprite.change_y = PLAYER_JUMP_SPEED
         elif key == arcade.key.DOWN or key == arcade.key.S:
             self.player_sprite.change_y = -PLAYER_MOVEMENT_SPEED
         elif key == arcade.key.LEFT or key == arcade.key.A:
             self.player_sprite.change_x = -PLAYER_MOVEMENT_SPEED
         elif key == arcade.key.RIGHT or key == arcade.key.D:
             self.player_sprite.change_x = PLAYER_MOVEMENT_SPEED
+
+        elif key == arcade.key.ESCAPE:
+            exit()
 
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key."""
