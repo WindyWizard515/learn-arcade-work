@@ -1,4 +1,5 @@
 import arcade
+from time import sleep
 import os
 os.system("clear")
 
@@ -63,6 +64,8 @@ class MyGame(arcade.Window):
         # Set up the Player Sprites
         self.player_right_face = "Lab 12 - Final Lab/player(R).png"
         self.player_left_face = "Lab 12 - Final Lab/player(L).png"
+        self.player_right_jump = "Lab 12 - Final Lab/player(RJ).png"
+        self.player_left_jump = "Lab 12 - Final Lab/player(LJ).png"
         self.player_sprite = arcade.Sprite(self.player_right_face, CHARACTER_SCALING)
 
         self.player_sprite.center_x = 55
@@ -141,12 +144,9 @@ class MyGame(arcade.Window):
 
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key."""
-
-        if key == arcade.key.UP or key == arcade.key.W:
-            self.player_sprite.change_y = 0
-        elif key == arcade.key.DOWN or key == arcade.key.S:
-            self.player_sprite.change_y = 0
-        elif key == arcade.key.LEFT or key == arcade.key.A:
+        # if key == arcade.key.DOWN or key == arcade.key.S:
+        #     self.player_sprite.change_y = 0
+        if key == arcade.key.LEFT or key == arcade.key.A:
             self.player_sprite.change_x = 0
         elif key == arcade.key.RIGHT or key == arcade.key.D:
             self.player_sprite.change_x = 0
