@@ -97,6 +97,7 @@ class MyGame(arcade.Window):
         self.scene.add_sprite("Walls", self.spaceship_sprite)
 
         # Create the coins
+        """ Wrench Sprite from https://opengameart.org/content/wrench-0 """
         for x in range(128, 1250, 256):
             coin = arcade.Sprite("Lab 12 - Final Lab/wrench.png", COIN_SCALING)
 
